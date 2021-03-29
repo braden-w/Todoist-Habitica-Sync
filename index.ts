@@ -36,8 +36,6 @@ app.post("/hook", async (req, res) => {
         notes: "",
         priority: event_data.priority,
       }
-
-      console.log(await axios.post(apiURL, payload, authHeaders))
       break
     case "item:updated":
       apiURL = `https://habitica.com/api/v3/tasks/${event_data.id}`
@@ -60,6 +58,18 @@ app.post("/hook", async (req, res) => {
       apiURL = `https://habitica.com/api/v3/tasks/${event_data.id}`
       console.log(await axios.delete(apiURL, payload, authHeaders))
       break
+  }
+  try {
+    console.log(
+      await axios({
+        method: "post",
+        url: apiURL,
+        data: payload,
+        headers: headers,
+      })
+    )
+  } catch (err) {
+    console.log(err)
   }
   res.status(200).end() // Responding is important
 })
