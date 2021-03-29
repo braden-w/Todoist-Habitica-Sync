@@ -15,5 +15,7 @@ app.get("/", (req, res) => {
 
 app.post("/hook", (req, res) => {
   console.log(req.body) // Call your action on the request here
+  const { event_data, event_name } = req.body
+  console.log(event_data, event_name)
   res.status(200).end() // Responding is important
 })
