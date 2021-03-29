@@ -4,7 +4,7 @@ const app = express()
 const PORT = 3000
 
 // Tell express to use body-parser's JSON parsing
-// app.use(bodyParser.json())
+app.use(express.json())
 
 // Start express on the defined port
 app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`))
