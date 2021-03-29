@@ -46,20 +46,16 @@ app.post("/hook", async (req, res) => {
         notes: "",
         priority: event_data.priority,
       }
-      console.log(await axios.put(apiURL, payload, authHeaders))
       break
     case "item:completed":
       apiURL = `https://habitica.com/api/v3/tasks/${event_data.id}/score/up`
-      console.log(await axios.post(apiURL, payload, authHeaders))
       break
     case "item:uncompleted":
       apiURL = `https://habitica.com/api/v3/tasks/${event_data.id}/score/down`
-      console.log(await axios.post(apiURL, payload, authHeaders))
       break
     case "item:deleted":
       method = "delete"
       apiURL = `https://habitica.com/api/v3/tasks/${event_data.id}`
-      console.log(await axios.delete(apiURL, payload, authHeaders))
       break
   }
   try {
