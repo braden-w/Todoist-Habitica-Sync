@@ -13,9 +13,7 @@ app.get("/", (req, res) => {
   res.send("Hello!")
 })
 
-app.post("/hook", (req: Req, res) => {
-  console.log(req)
-  console.log(req.body) // Call your action on the request here
+app.post("/hook", (req, res) => {
   const { event_data, event_name } = req.body
   console.log(event_data, event_name)
   switch (event_name) {
