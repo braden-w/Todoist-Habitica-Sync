@@ -3,7 +3,7 @@ require("dotenv").config()
 // Require express and body-parser
 const express = require("express")
 const app = express()
-const PORT = 3000
+const PORT = process.env.PORT
 const axios = require("axios")
 
 // Tell express to use body-parser's JSON parsing
