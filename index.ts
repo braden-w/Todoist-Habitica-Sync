@@ -23,6 +23,14 @@ app.post("/hook", async (req, res) => {
   switch (event_name) {
     case "item:added":
       apiURL = "https://habitica.com/api/v3/tasks/user"
+      payload = {
+        text: event_data.content,
+        type: "todo",
+        alias: event_data.id,
+        notes: "",
+        priority: event_data.priority,
+      }
+
       break
     case "item:updated":
       apiURL = `https://habitica.com/api/v3/tasks/${event_data.id}`
