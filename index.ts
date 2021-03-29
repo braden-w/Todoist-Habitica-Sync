@@ -19,11 +19,9 @@ app.get("/", (req, res) => {
 app.post("/hook", async (req, res) => {
   const { event_data, event_name } = req.body
   // console.log(event_data, event_name)
-  const authHeaders = {
-    headers: {
-      "x-api-user": process.env.api_user,
-      "x-api-key": process.env.api_key,
-    },
+  const headers = {
+    "x-api-user": process.env.api_user,
+    "x-api-key": process.env.api_key,
   }
   let apiURL = ""
   let payload = {}
