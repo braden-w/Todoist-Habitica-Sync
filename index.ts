@@ -1,3 +1,5 @@
+require("dotenv").config()
+
 // Require express and body-parser
 const express = require("express")
 const app = express()
@@ -38,14 +40,17 @@ app.post("/hook", async (req, res) => {
   const payload = {
     text: event_data.content,
     type: "todo",
+    alias: event_data.id,
     notes: "",
     priority: event_data.priority,
   }
   try {
-    const res = await axios.post(
-      "https://habitica.com/api/v3/tasks/user",
-      payload,
-    )
+    const res = await axios.post(apiURL, payload, {
+      headers: {
+        "x-api-user": process.env.api_user,
+        "x-api-key": process.env.api_key,
+      },
+    })
     console.log(`statusCode: ${res.statusCode}`)
     console.log(res)
   } catch (error) {
