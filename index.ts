@@ -50,13 +50,13 @@ app.post("/hook", async (req, res) => {
       axiosFunction = axios.put
       break
     case "item:completed":
-      apiURL = `habitica.com/api/v3/tasks/${event_data.id}/score/up`
+      apiURL = `https://habitica.com/api/v3/tasks/${event_data.id}/score/up`
       break
     case "item:uncompleted":
-      apiURL = `habitica.com/api/v3/tasks/${event_data.id}/score/down`
+      apiURL = `https://habitica.com/api/v3/tasks/${event_data.id}/score/down`
       break
     case "item:deleted":
-      apiURL = `habitica.com/api/v3/tasks/${event_data.id}`
+      apiURL = `https://habitica.com/api/v3/tasks/${event_data.id}`
       axiosFunction = axios.delete
       break
   }
