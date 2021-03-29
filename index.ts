@@ -39,6 +39,7 @@ app.post("/hook", async (req, res) => {
         priority: event_data.priority,
       }
 
+      console.log(await axios.post(apiURL, payload, authHeaders))
       break
     case "item:updated":
       apiURL = `https://habitica.com/api/v3/tasks/${event_data.id}`
@@ -47,25 +48,20 @@ app.post("/hook", async (req, res) => {
         notes: "",
         priority: event_data.priority,
       }
-      axiosFunction = axios.put
+      console.log(await axios.put(apiURL, payload, authHeaders))
       break
     case "item:completed":
       apiURL = `https://habitica.com/api/v3/tasks/${event_data.id}/score/up`
+      console.log(await axios.post(apiURL, payload, authHeaders))
       break
     case "item:uncompleted":
       apiURL = `https://habitica.com/api/v3/tasks/${event_data.id}/score/down`
+      console.log(await axios.post(apiURL, payload, authHeaders))
       break
     case "item:deleted":
       apiURL = `https://habitica.com/api/v3/tasks/${event_data.id}`
-      axiosFunction = axios.delete
+      console.log(await axios.delete(apiURL, payload, authHeaders))
       break
-  }
-  try {
-    // console.log(`statusCode: ${res.statusCode}`)
-    const res = await axiosFunction(apiURL, payload, authHeaders)
-    console.log(res)
-  } catch (error) {
-    console.error(error)
   }
   res.status(200).end() // Responding is important
 })
