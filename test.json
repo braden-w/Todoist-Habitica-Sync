@@ -1,0 +1,42 @@
+{
+  "event_data": {
+    "added_by_uid": 3473110,
+    "assigned_by_uid": null,
+    "checked": 1,
+    "child_order": 313,
+    "collapsed": 0,
+    "content": "test",
+    "date_added": "2021-03-29T04:10:35Z",
+    "date_completed": "2021-03-29T04:11:55Z",
+    "due": {
+      "date": "2021-03-28",
+      "is_recurring": false,
+      "lang": "en",
+      "string": "Mar 28",
+      "timezone": null
+    },
+    "id": 4698343325,
+    "in_history": 1,
+    "is_deleted": 0,
+    "labels": [],
+    "legacy_project_id": 135870878,
+    "parent_id": null,
+    "priority": 1,
+    "project_id": 941177246,
+    "responsible_uid": null,
+    "section_id": null,
+    "sync_id": null,
+    "url": "https://todoist.com/showTask?id=4698343325",
+    "user_id": 3473110
+  },
+  "event_name": "item:completed",
+  "initiator": {
+    "email": "bmw02002turbo@gmail.com",
+    "full_name": "Braden W",
+    "id": 3473110,
+    "image_id": "79941d4b6e28c8fa91d331b23b518aac",
+    "is_premium": true
+  },
+  "user_id": 3473110,
+  "version": "8"
+}
