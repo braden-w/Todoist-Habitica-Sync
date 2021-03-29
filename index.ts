@@ -1,4 +1,4 @@
-export interface Req {
+interface Req {
   event_data: EventData
   event_name: string
   initiator: Initiator
@@ -6,7 +6,7 @@ export interface Req {
   version: string
 }
 
-export interface EventData {
+interface EventData {
   added_by_uid: number
   assigned_by_uid: null
   checked: number
@@ -31,7 +31,7 @@ export interface EventData {
   user_id: number
 }
 
-export interface Due {
+interface Due {
   date: string
   is_recurring: boolean
   lang: string
@@ -39,7 +39,7 @@ export interface Due {
   timezone: null
 }
 
-export interface Initiator {
+interface Initiator {
   email: string
   full_name: string
   id: number
