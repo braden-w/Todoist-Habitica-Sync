@@ -1,4 +1,7 @@
 export interface Req {
+  body: Body
+}
+export interface Body {
   event_data: EventData
   event_name: string
   initiator: Initiator
