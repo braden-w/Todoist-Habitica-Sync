@@ -18,8 +18,16 @@ app.get("/", (req, res) => {
 
 app.post("/hook", async (req, res) => {
   const { event_data, event_name } = req.body
-  console.log(event_data, event_name)
+  // console.log(event_data, event_name)
+  const authHeaders = {
+    headers: {
+      "x-api-user": process.env.api_user,
+      "x-api-key": process.env.api_key,
+    },
+  }
   let apiURL = ""
+  let payload = {}
+  let axiosFunction = axios.post
   switch (event_name) {
     case "item:added":
       apiURL = "https://habitica.com/api/v3/tasks/user"
@@ -49,23 +57,12 @@ app.post("/hook", async (req, res) => {
       break
     case "item:deleted":
       apiURL = `habitica.com/api/v3/tasks/${event_data.id}`
+      axiosFunction = axios.delete
       break
   }
-  const payload = {
-    text: event_data.content,
-    type: "todo",
-    alias: event_data.id,
-    notes: "",
-    priority: event_data.priority,
-  }
   try {
-    const res = await axios.post(apiURL, payload, {
-      headers: {
-        "x-api-user": process.env.api_user,
-        "x-api-key": process.env.api_key,
-      },
-    })
-    console.log(`statusCode: ${res.statusCode}`)
+    // console.log(`statusCode: ${res.statusCode}`)
+    const res = await axiosFunction(apiURL, payload, authHeaders)
     console.log(res)
   } catch (error) {
     console.error(error)
