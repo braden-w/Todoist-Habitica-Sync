@@ -34,6 +34,12 @@ app.post("/hook", async (req, res) => {
       break
     case "item:updated":
       apiURL = `https://habitica.com/api/v3/tasks/${event_data.id}`
+      payload = {
+        text: event_data.content,
+        notes: "",
+        priority: event_data.priority,
+      }
+      axiosFunction = axios.put
       break
     case "item:completed":
       apiURL = `habitica.com/api/v3/tasks/${event_data.id}/score/up`
