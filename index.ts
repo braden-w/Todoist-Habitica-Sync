@@ -23,6 +23,7 @@ app.post("/hook", async (req, res) => {
     "x-api-user": process.env.api_user,
     "x-api-key": process.env.api_key,
   }
+  let method = "post"
   let apiURL = ""
   let payload = {}
   let axiosFunction = axios.post
@@ -38,6 +39,7 @@ app.post("/hook", async (req, res) => {
       }
       break
     case "item:updated":
+      method = "put"
       apiURL = `https://habitica.com/api/v3/tasks/${event_data.id}`
       payload = {
         text: event_data.content,
@@ -55,6 +57,7 @@ app.post("/hook", async (req, res) => {
       console.log(await axios.post(apiURL, payload, authHeaders))
       break
     case "item:deleted":
+      method = "delete"
       apiURL = `https://habitica.com/api/v3/tasks/${event_data.id}`
       console.log(await axios.delete(apiURL, payload, authHeaders))
       break
@@ -62,7 +65,7 @@ app.post("/hook", async (req, res) => {
   try {
     console.log(
       await axios({
-        method: "post",
+        method: method,
         url: apiURL,
         data: payload,
         headers: headers,
