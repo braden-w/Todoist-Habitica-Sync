@@ -57,7 +57,7 @@ app.post("/hook", async (req, res) => {
             text: event_data.content,
             type: "todo",
             // TODO: Change event data from random
-            alias: event_data.id,
+            alias: String(Math.floor(Math.random() * 1000000)),
             notes: "",
             priority: event_data.priority,
           },
