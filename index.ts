@@ -48,6 +48,22 @@ app.post("/hook", async (req, res) => {
       }
       break
     case "item:completed":
+      // Add task first
+      console.log(
+        await axios({
+          method: method,
+          url: "https://habitica.com/api/v3/tasks/user",
+          data: {
+            text: event_data.content,
+            type: "todo",
+            alias: event_data.id,
+            notes: "",
+            priority: event_data.priority,
+          },
+          headers: headers,
+        })
+      )
+      // Then complete task
       apiURL = `https://habitica.com/api/v3/tasks/${event_data.id}/score/up`
       break
     case "item:uncompleted":
