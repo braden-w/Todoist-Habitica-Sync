@@ -49,6 +49,8 @@ app.post("/hook", async (req, res) => {
       break
     case "item:completed":
       // Add task first
+      let alias = String(Math.floor(Math.random() * 1000000))
+      // const alias = event_data.id
       console.log(
         await axios({
           method: method,
@@ -57,7 +59,7 @@ app.post("/hook", async (req, res) => {
             text: event_data.content,
             type: "todo",
             // TODO: Change event data from random
-            alias: String(Math.floor(Math.random() * 1000000)),
+            alias: alias,
             notes: "",
             priority: event_data.priority,
           },
@@ -65,7 +67,7 @@ app.post("/hook", async (req, res) => {
         })
       )
       // Then complete task
-      apiURL = `https://habitica.com/api/v3/tasks/${event_data.id}/score/up`
+      apiURL = `https://habitica.com/api/v3/tasks/${alias}/score/up`
       break
     case "item:uncompleted":
       apiURL = `https://habitica.com/api/v3/tasks/${event_data.id}/score/down`
