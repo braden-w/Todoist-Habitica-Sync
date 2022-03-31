@@ -29,13 +29,14 @@ const main = async () => {
         headers: {
           "x-api-user": process.env.api_user,
           "x-api-key": process.env.api_key,
+          "x-client": `${process.env.api_user}-DeleteAllTasks`,
         },
       }
     )
     console.log("🚀 ~ file: completeTasks.ts ~ line 36 ~ main ~ data", data)
 
     // Wait for a second before completing the next task
-    await new Promise((resolve) => setTimeout(resolve, 1000))
+    await new Promise((resolve) => setTimeout(resolve, 3000))
   }
 }
 
