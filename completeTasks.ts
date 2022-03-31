@@ -12,7 +12,9 @@ const getAliases = async () => {
       "x-api-key": process.env.api_key,
     },
   })
-  return data.data.map((task) => task.alias)
+  // Remove all undefined entries
+  const aliases = data.data.map((task) => task.alias)
+  return aliases.filter((alias) => alias !== undefined)
 }
 
 const main = async () => {
@@ -20,7 +22,8 @@ const main = async () => {
   console.log("🚀 ~ file: completeTasks.ts ~ line 21 ~ main ~ aliases", aliases)
   // Delete all tasks from aliases using the Habitica API
   for (const alias of aliases) {
-    await axios.post(
+    // Get response from axios post
+    const { data } = await axios.post(
       "https://habitica.com/api/v3/tasks/user/:id/score/up",
       {
         id: alias,
@@ -32,6 +35,10 @@ const main = async () => {
         },
       }
     )
+    console.log("🚀 ~ file: completeTasks.ts ~ line 36 ~ main ~ data", data)
+
+    // Wait for a second before completing the next task
+    await new Promise((resolve) => setTimeout(resolve, 1000))
   }
 }
 
