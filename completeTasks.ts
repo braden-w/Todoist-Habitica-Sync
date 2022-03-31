@@ -23,16 +23,16 @@ const main = async () => {
   // Delete all tasks from aliases using the Habitica API
   for (const alias of aliases) {
     // Get response from axios post
-    const { data } = await axios.post(
-      `https://habitica.com/api/v3/tasks/${alias}/score/up`,
-      {
-        headers: {
-          "x-api-user": process.env.api_user,
-          "x-api-key": process.env.api_key,
-          "x-client": `${process.env.api_user}-DeleteAllTasks`,
-        },
-      }
-    )
+    const { data } = await axios({
+      method: "post",
+      url: `https://habitica.com/api/v3/tasks/${alias}/score/up`,
+      data: {},
+      headers: {
+        "x-api-user": process.env.api_user,
+        "x-api-key": process.env.api_key,
+        "x-client": `${process.env.api_user}-DeleteAllTasks`,
+      },
+    })
     console.log("🚀 ~ file: completeTasks.ts ~ line 36 ~ main ~ data", data)
 
     // Wait for a second before completing the next task
