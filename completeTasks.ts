@@ -24,10 +24,7 @@ const main = async () => {
   for (const alias of aliases) {
     // Get response from axios post
     const { data } = await axios.post(
-      "https://habitica.com/api/v3/tasks/user/:id/score/up",
-      {
-        id: alias,
-      },
+      `https://habitica.com/api/v3/tasks/${alias}/score/up`,
       {
         headers: {
           "x-api-user": process.env.api_user,
