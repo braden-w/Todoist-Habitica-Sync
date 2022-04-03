@@ -13,8 +13,8 @@ const getAliases = async () => {
     },
   })
   // Remove all undefined entries
-  const aliases = data.data.map((task) => task.alias)
-  return aliases.filter((alias) => alias !== undefined)
+  const aliases = data.data.map((task) => task.id)
+  return aliases.filter((id) => id !== undefined)
 }
 
 const main = async () => {
